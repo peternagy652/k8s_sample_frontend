@@ -7,6 +7,6 @@ RUN yarn build
 FROM nginx:stable-alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
-COPY ./certs/server.pem /opt/ssl/localhost.pem
-COPY ./certs/server.key /opt/ssl/localhost.key
-EXPOSE 80
+COPY ./certs/localhost.crt /opt/ssl/localhost.crt
+COPY ./certs/localhost.unencrypted.key /opt/ssl/localhost.key
+EXPOSE 443
