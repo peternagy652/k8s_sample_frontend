@@ -21,23 +21,23 @@ export const People = () => {
     const [persons, setPersons] = useState<Person[]>([]);
 
     useEffect(() => {
-        axios.get('/hello').then((response) => {
+        axios.get('/api/v1/hello').then((response) => {
             setHello(response.data);
         })
     }, [])
 
     const getPeople = () => {
-        axios.get('/persons').then((response) => {
+        axios.get('/api/v1/persons').then((response) => {
             response.data.Persons && setPersons(response.data.Persons);
         })
     }
 
     const generatePeople = () => {
-        axios.post('/generate?count=10');
+        axios.post('/api/v1/generate?count=10');
     }
 
     const deletePeople = () => {
-        axios.delete('/persons').then((response) => {
+        axios.delete('/api/v1/persons').then((response) => {
             if (response.status === 200) {
                 setPersons([]);
             }
